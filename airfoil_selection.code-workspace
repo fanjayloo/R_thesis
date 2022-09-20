@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "D:\\Personal Projects\\Racing Car Front Wing Project\\CFD Results\\Airfoil Selection"
+		},
+		{
+			"path": "D:\\Personal Projects\\Racing Car Front Wing Project\\CFD Results\\Airfoil Selection2"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"streamlines": "cpp",
+			"controldict": "cpp"
+		}
+	}
+}

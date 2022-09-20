@@ -1,0 +1,75 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2206                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     simpleFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         3000;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   100;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+
+
+    forceCoeffs1
+    {
+        type            forceCoeffs;
+        libs            ("libforces.so");
+        writeControl    timeStep;
+        writeInterval   10;
+        log             true;
+        patches         (airfoil);
+        rho             rhoInf;      // Indicates incompressible.
+        rhoInf          1.225;        // Redundant for incompressible (value does not matter).
+        liftDir         (0 1 0);
+        dragDir         (1 0 0);
+        CofR            (0.25 0 0);  // Quarter-chord.
+        pitchAxis       (0 0 1);
+        magUInf         20;           // Matches 0/U.
+        lRef            0.39;         // Normalized chord.
+        Aref            0.000039;         // Cell depth * chord.
+    }
+    #includeFunc solverInfo
+    #includeFunc yPlus
+    #includeFunc forcesIncompressible
+}
+
+
+// ************************************************************************* //
